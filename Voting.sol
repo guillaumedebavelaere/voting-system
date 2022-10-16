@@ -153,7 +153,7 @@ contract Voting is Ownable {
             "Proposals registration is closed!"
         )
     {
-        if (isProposalAlreadyRegistered(_proposalDescription)) {
+        if (_isProposalAlreadyRegistered(_proposalDescription)) {
             revert("This proposal is already registered!");
         }
         _registeredProposals.push(Proposal(_proposalDescription, 0));
@@ -174,7 +174,7 @@ contract Voting is Ownable {
     }
 
     /**
-     * @dev Get the voted proposal id a voter voted for. This can be see by any registered voter.
+     * @dev Get the voted proposal id a voter voted for. This can be seen by any registered voter.
      * The workflow status has to be in VotesTallied state.
      * @param _voterAddress the voter's address.
      * @return the voted proposal id.
@@ -215,7 +215,7 @@ contract Voting is Ownable {
      * @param _proposalDescription the proposal description
      * @return true if the proposal already exists, false otherwise
      */
-    function isProposalAlreadyRegistered(string calldata _proposalDescription)
+    function _isProposalAlreadyRegistered(string calldata _proposalDescription)
         private
         view
         returns (bool)
